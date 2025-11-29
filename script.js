@@ -126,6 +126,30 @@ const dict = {
       'showcase.title':'Projekti','showcase.sub':'Moment-izvodi sa skorijih projekata.',
       'showcase.s1.title':'Transport Suite','showcase.s1.text':'Vozači, vozila, dozvole i podsetnici sa audit logovima i dashboardima.',
       'showcase.s2.title':'Logbook Pro','showcase.s2.text':'Ture vozača, koordinate, carinski punktovi i offline unos.',
+            'ts.title':'Transport Suite',
+      'ts.sub':'SaaS platforma za transportne i logističke kompanije — vozači, vozila, ture, dozvole i podsetnici na jednom mestu.',
+
+      'ts.ops.title':'Operativa & ture',
+      'ts.ops.text':'Evidencija tura, država, gradova, utovara i istovara, kilometraže i trajanja — sa filtriranjem po vozaču, vozilu i klijentu.',
+      'ts.ops.li1':'Ture vozača sa detaljima rute',
+      'ts.ops.li2':'Pregled po danu, nedelji, mesecu',
+      'ts.ops.li3':'Export u PDF / Excel',
+
+      'ts.compliance.title':'Dozvole & usklađenost',
+      'ts.compliance.text':'Registracije, tehnički pregledi, PP aparati, dozvole i dokumenti — sa podsetnicima pre isteka.',
+      'ts.compliance.li1':'Podsetnici za isteke dokumenata',
+      'ts.compliance.li2':'Pregled po vozaču ili vozilu',
+      'ts.compliance.li3':'Audit log ključnih promena',
+
+      'ts.tech.title':'Tehnologija & integracije',
+      'ts.tech.text':'Moderni stack sa fokusom na stabilnost i širenje — spreman za nove module, integracije i API-je.',
+      'ts.tech.li1':'Next.js / TypeScript frontend',
+      'ts.tech.li2':'Prisma & PostgreSQL backend',
+      'ts.tech.li3':'Stripe pretplate i role (RBAC)',
+
+      'ts.cta.main':'Zakaži demo / konsultacije',
+      'ts.cta.note':'Kratak online sastanak, prolazimo kroz potrebe vaše firme i dogovaramo naredne korake.',
+
       'showcase.s3.title':'Reminder Desktop','showcase.s3.text':'JavaFX sa system tray‑om, notifikacijama i PDF izveštajima.',
       'clients.title':'Klijenti & Partneri','clients.sub':'Ponosni na saradnju sa ozbiljnim timovima i organizacijama.',
       'cta.title':'Imate ideju?','cta.text':'Prototip za nedelju dana, iterativna isporuka po sprintovima — jasan obim i rokovi.','cta.button':'Zakaži sastanak',
@@ -161,6 +185,30 @@ const dict = {
       'showcase.s1.title':'Transport Suite','showcase.s1.text':'Drivers, vehicles, permits & reminders with audit logs and dashboards.',
       'showcase.s2.title':'Logbook Pro','showcase.s2.text':'Driver tours, coordinates, customs points and offline capture.',
       'showcase.s3.title':'Reminder Desktop','showcase.s3.text':'JavaFX with system tray, notifications and PDF reports.',
+            'ts.title':'Transport Suite',
+      'ts.sub':'A SaaS platform for transport and logistics companies — drivers, vehicles, tours, permits and reminders in one place.',
+
+      'ts.ops.title':'Operations & tours',
+      'ts.ops.text':'Track tours, countries, cities, loading/unloading points, mileage and duration — with filtering by driver, vehicle and client.',
+      'ts.ops.li1':'Driver tours with route details',
+      'ts.ops.li2':'Daily, weekly and monthly overviews',
+      'ts.ops.li3':'Export to PDF / Excel',
+
+      'ts.compliance.title':'Compliance & permits',
+      'ts.compliance.text':'Registrations, technical checks, fire extinguishers, permits and documents — with reminders before expiry.',
+      'ts.compliance.li1':'Reminders for document expirations',
+      'ts.compliance.li2':'Views grouped by driver or vehicle',
+      'ts.compliance.li3':'Audit log of critical changes',
+
+      'ts.tech.title':'Technology & integrations',
+      'ts.tech.text':'Modern stack focused on stability and growth — ready for new modules, integrations and APIs.',
+      'ts.tech.li1':'Next.js / TypeScript frontend',
+      'ts.tech.li2':'Prisma & PostgreSQL backend',
+      'ts.tech.li3':'Stripe subscriptions and roles (RBAC)',
+
+      'ts.cta.main':'Book a demo / consultation',
+      'ts.cta.note':'A short online call to understand your needs and define the next steps.',
+
       'clients.title':'Clients & Partners','clients.sub':'Proud to work with solid teams and organizations.',
       'cta.title':'Have a project in mind?','cta.text':'Prototype in a week and ship in sprints — clear scope, clear milestones.','cta.button':'Schedule a call',
       'contact.title':'Contact','contact.sub':'Tell us about your idea — we’ll reply within 24h.','contact.name':'Name','contact.email':'Email','contact.message':'Message','contact.send':'Send','contact.openMail':'Opening your email client...',

@@ -102,7 +102,7 @@ const applyTheme = (t)=>{
 const dict = {
   sr:{'nav.about':'O nama','nav.services':'Usluge','nav.showcase':'Projekti','nav.contact':'Kontakt','nav.cta':'Kontaktiraj nas',
       'hero.badge':'Mi rešavamo kompleksne sisteme','hero.title':"Gradimo pametna rešenja za <span style='color:var(--primary)'>povezani</span> svet.",
-      'hero.lead':'SofTech Resolve isporučuje kompletan razvoj web, desktop i cloud softvera. Od transportno‑logističkih platformi do real‑time kontrolnih tabli – isporučujemo stabilne i skalabilne proizvode.',
+'hero.lead':'SofTech Resolve isporučuje kompletan razvoj web, desktop i cloud softvera. Gradimo poslovne aplikacije, web sajtove, kontrolne table i interne alate — uz fokus na Java/JavaFX i JavaScript/TypeScript (React, Next.js) stack.',
       'hero.ctaStart':'Započni projekat','hero.ctaWork':'Pogledaj radove',
       'about.title':'O kompaniji','about.sub':'Inženjerski studio fokusiran na pouzdanost, jasnoću i brzinu.',
       'about.card1.title':'Engineering first','about.card1.text':'Čista arhitektura, snažni domen modeli i automatizovani testovi. Gradimo sisteme koje je lako održavati.',
@@ -126,7 +126,7 @@ const dict = {
   },
   en:{'nav.about':'About','nav.services':'Services','nav.showcase':'Showcase','nav.contact':'Contact','nav.cta':'Get in touch',
       'hero.badge':'We solve complex systems','hero.title':"Building smart solutions for a <span style='color:var(--primary)'>connected</span> world.",
-      'hero.lead':'SofTech Resolve delivers end‑to‑end web, desktop and cloud software. From transport & logistics platforms to real‑time dashboards, we ship stable, scalable products.',
+      'hero.lead':'SofTech Resolve delivers end-to-end web, desktop and cloud software. We build business applications, websites, dashboards and internal tools — with a focus on Java/JavaFX and JavaScript/TypeScript (React, Next.js).',
       'hero.ctaStart':'Start a project','hero.ctaWork':'See our work',
       'about.title':'About SofTech','about.sub':'An engineering studio focused on reliability, clarity and speed.',
       'about.card1.title':'Engineering first','about.card1.text':'Clean architecture, strong domain models and automated tests. We build systems that are easy to maintain.',

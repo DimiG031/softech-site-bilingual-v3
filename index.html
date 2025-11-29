@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="sr" data-lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SofTech • Building Smart Solutions</title>
+  <meta name="description" content="SofTech Resolve — inženjering pouzdanog softvera za transport, logistiku i enterprise sisteme."/>
+  <meta name="theme-color" content="#0B1E39" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SofTech Resolve — Building Smart Solutions" />
+  <meta property="og:description" content="Engineering reliable software for transport, logistics and enterprise systems." />
+  <meta property="og:image" content="assets/logo.png" />
+  <meta property="og:url" content="https://softech.rs/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- LOGO PUZZLE INTRO -->
+  <div class="animation-container" id="animationContainer" aria-hidden="true">
+    <button id="skipIntro" class="skip-btn" aria-label="Preskoči / Skip">Skip</button>
+    <div class="logo-container" id="logoContainer"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container inner">
+      <div class="brand">
+        <img src="assets/logo.jpg" alt="SofTech Resolve logo" height="42" />
+      </div>
+      <div class="nav-links">
+        <a href="#about" data-i18n="nav.about">O nama</a>
+        <a href="#services" data-i18n="nav.services">Usluge</a>
+        <a href="#showcase" data-i18n="nav.showcase">Projekti</a>
+        <a href="#contact" data-i18n="nav.contact">Kontakt</a>
+        <button class="lang-toggle" id="themeBtn" title="Theme">☾/☀</button>
+        <button class="lang-toggle" id="langBtn">SRB / ENG</button>
+        <a class="cta-btn" href="#contact" data-i18n="nav.cta">Kontaktiraj nas</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container inner">
+      <div>
+        <span class="tag" data-i18n="hero.badge">Mi rešavamo kompleksne sisteme</span>
+        <h1 data-i18n="hero.title">Gradimo pametna rešenja za <span style='color:var(--primary)'>povezani</span> svet.</h1>
+        <p class="lead" data-i18n="hero.lead">SofTechRS isporučuje kompletan razvoj web, desktop i cloud softvera. Od transportno‑logističkih platformi do real‑time kontrolnih tabli – isporučujemo stabilne i skalabilne proizvode.</p>
+        <div class="actions">
+          <a class="cta-btn" href="#contact" data-i18n="hero.ctaStart">Započni projekat</a>
+          <a class="ghost" href="#showcase" data-i18n="hero.ctaWork">Pogledaj radove</a>
+        </div>
+        <div class="badges">
+          <span>Next.js / React</span><span>Java / JavaFX</span><span>TypeScript</span><span>PostgreSQL</span><span>Stripe</span><span>Three.js</span>
+        </div>
+      </div>
+      <div class="card">
+        <img src="assets/logo.jpg" alt="SofTech Resolve" />
+      </div>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 data-i18n="about.title">O kompaniji</h2>
+      <p class="sub" data-i18n="about.sub">Inženjerski studio fokusiran na pouzdanost, jasnoću i brzinu.</p>
+      <div class="grid-3">
+        <div class="card"><h3 data-i18n="about.card1.title">Engineering first</h3><p data-i18n="about.card1.text">Čista arhitektura, snažni domen modeli i automatizovani testovi. Gradimo sisteme koje je lako održavati.</p></div>
+        <div class="card"><h3 data-i18n="about.card2.title">UX with purpose</h3><p data-i18n="about.card2.text">Moderni UI sa fokusom na jasnoću i produktivnost. Dark/light teme, prečice i offline obrasci.</p></div>
+        <div class="card"><h3 data-i18n="about.card3.title">Secure by design</h3><p data-i18n="about.card3.text">RBAC, audit logovi, enkripcija u miru i prenosu. Bezbednost od prvog dana.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2 data-i18n="services.title">Usluge</h2>
+      <p class="sub" data-i18n="services.sub">Od ideje do produkcije – i dalje.</p>
+      <div class="grid-4">
+        <div class="card"><h3 data-i18n="services.card1.title">Web & SaaS</h3><p data-i18n="services.card1.text">Next.js/TypeScript aplikacije sa pretplatama, multi‑tenant arhitekturom i admin konzolama.</p></div>
+        <div class="card"><h3 data-i18n="services.card2.title">Desktop</h3><p data-i18n="services.card2.text">Java/JavaFX alati, installeri (jpackage + WiX), auto‑update i štampa.</p></div>
+        <div class="card"><h3 data-i18n="services.card3.title">APIs & Data</h3><p data-i18n="services.card3.text">Prisma & PostgreSQL, pozadinski poslovi, izveštaji, PDF/Excel tokovi i analitika.</p></div>
+        <div class="card"><h3 data-i18n="services.card4.title">3D & Mape</h3><p data-i18n="services.card4.text">Three.js, Blender pipeline i interaktivne geovizualizacije.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Showcase -->
+  <section id="showcase" class="section">
+    <div class="container">
+      <h2 data-i18n="showcase.title">Projekti</h2>
+      <p class="sub" data-i18n="showcase.sub">Moment-izvodi sa skorijih projekata.</p>
+      <div class="carousel card">
+        <div class="carousel-track" id="track">
+          <div class="slide" style="padding:20px;">
+            <h3 data-i18n="showcase.s1.title">Transport Suite</h3>
+            <p class="sub" data-i18n="showcase.s1.text">Vozači, vozila, dozvole i podsetnici sa audit logovima i dashboardima.</p>
+            <div class="badges"><span>Next.js</span><span>Prisma</span><span>Stripe</span></div>
+          </div>
+          <div class="slide" style="padding:20px;">
+            <h3 data-i18n="showcase.s2.title">Logbook Pro</h3>
+            <p class="sub" data-i18n="showcase.s2.text">Ture vozača, koordinate, carinski punktovi i offline unos.</p>
+            <div class="badges"><span>PWA</span><span>SQLite</span><span>Maps</span></div>
+          </div>
+          <div class="slide" style="padding:20px;">
+            <h3 data-i18n="showcase.s3.title">Reminder Desktop</h3>
+            <p class="sub" data-i18n="showcase.s3.text">JavaFX sa system tray‑om, notifikacijama i PDF izveštajima.</p>
+            <div class="badges"><span>JavaFX</span><span>SQLite</span><span>PDF</span></div>
+          </div>
+        </div>
+        <div class="controls">
+          <button onclick="prev()">◀</button>
+          <button onclick="next()">▶</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients -->
+  <section id="clients" class="section">
+    <div class="container">
+      <h2 data-i18n="clients.title">Klijenti & Partneri</h2>
+      <p class="sub" data-i18n="clients.sub">Ponosni na saradnju sa ozbiljnim timovima i organizacijama.</p>
+      <div class="grid-4 logos">
+        <div class="card">ACME Logistics</div>
+        <div class="card">EuroDrive</div>
+        <div class="card">RouteMaster</div>
+        <div class="card">CityTransit</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="container inner">
+      <div>
+        <h3 style="margin:0 0 6px;" data-i18n="cta.title">Imate ideju?</h3>
+        <p class="sub" style="margin:0;" data-i18n="cta.text">Prototip za nedelju dana, iterativna isporuka po sprintovima — jasan obim i rokovi.</p>
+      </div>
+      <a class="cta-btn" href="#contact" data-i18n="cta.button">Zakaži sastanak</a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 data-i18n="contact.title">Kontakt</h2>
+      <p class="sub" data-i18n="contact.sub">Napišite nam o ideji — javljamo se u roku od 24h.</p>
+      <div class="grid-3">
+        <form class="card" onsubmit="return sendMail(this)">
+          <label data-i18n="contact.name">Ime i prezime</label><br/>
+          <input name="name" required placeholder="Vaše ime"/><br/><br/>
+          <label data-i18n="contact.email">Email</label><br/>
+          <input type="email" name="email" required placeholder="vi@firma.com"/><br/><br/>
+          <label data-i18n="contact.message">Poruka</label><br/>
+          <textarea name="message" rows="5" placeholder="Šta gradimo?"></textarea><br/>
+          <button class="cta-btn" type="submit" data-i18n="contact.send">Pošalji</button>
+          <p class="sub" id="formStatus" style="margin-top:10px;"></p>
+        </form>
+        <div class="card">
+          <h3 data-i18n="contact.capabilities">Mogućnosti</h3>
+          <ul>
+            <li data-i18n="capabilities.1">Custom SaaS i API</li>
+            <li data-i18n="capabilities.2">Pretplate i naplata</li>
+            <li data-i18n="capabilities.3">RBAC i audit log</li>
+            <li data-i18n="capabilities.4">CI/CD i cloud</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 data-i18n="contact.stack">Tehnologije</h3>
+          <ul>
+            <li>Next.js / React / TS</li>
+            <li>Java / JavaFX</li>
+            <li>Prisma / PostgreSQL</li>
+            <li>Stripe / Webhooks</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+  <div class="container cols">
+    <div>
+      <img src="assets/logo.jpg" alt="SofTechRS" height="40" />
+      <p class="sub" style="max-width:48ch;margin-top:10px;" data-i18n="footer.blurb">
+        SofTech Resolve gradi pouzdan softver za timove koji isporučuju. Pretvaramo kompleksne procese u jasne, upotrebljive alate.
+      </p>
+    </div>
+
+    <div>
+      <h4 data-i18n="footer.company">Kompanija</h4>
+      <a href="#about" data-i18n="nav.about">O nama</a><br/>
+      <a href="#services" data-i18n="nav.services">Usluge</a><br/>
+      <a href="#showcase" data-i18n="nav.showcase">Projekti</a>
+    </div>
+
+    <div>
+      <h4 data-i18n="footer.products">Proizvodi</h4>
+      <a href="#">Transport Suite</a><br/>
+      <a href="#">Logbook Pro</a><br/>
+      <a href="#">Reminder Desktop</a>
+    </div>
+
+    <div>
+      <h4 data-i18n="footer.contact">Kontakt</h4>
+      <a href="mailto:hello@softech.rs">hello@softech.rs</a><br/>
+      <a href="#contact" data-i18n="nav.cta">Kontaktiraj nas</a>
+    </div>
+
+    <!-- LEPŠI COPYRIGHT RED -->
+    <div class="footnote" style="grid-column:1/-1;">
+      <div class="foot-row">
+        <span class="copy">© 2025 SofTechRS</span>
+        <span class="sep">•</span>
+        <span class="region">RS / EU</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

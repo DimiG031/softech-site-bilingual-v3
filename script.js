@@ -188,7 +188,7 @@ ${data.get('email')}`);
   const status = document.getElementById('formStatus');
   const ok = await sendViaBackend(payload);
   if(ok){ status.textContent = i18n.current==='sr' ? 'Poruka poslata. Hvala!' : 'Message sent. Thank you!'; return false; }
-  const email = 'hello@softech.rs';
+  const email = 'contact@softechrs.com';
   const href = `mailto:${email}?subject=${subject}&body=${body}`;
   status.textContent = i18n.t('contact.openMail');
   window.location.href = href;

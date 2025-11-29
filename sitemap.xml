@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://softech.rs/</loc></url>
-  <url><loc>https://softech.rs/#about</loc></url>
-  <url><loc>https://softech.rs/#services</loc></url>
-  <url><loc>https://softech.rs/#showcase</loc></url>
-  <url><loc>https://softech.rs/#clients</loc></url>
-  <url><loc>https://softech.rs/#contact</loc></url>
+  <url>
+    <loc>https://softechrs.com/</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://softechrs.com/privacy.html</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://softechrs.com/terms.html</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
 </urlset>

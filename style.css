@@ -87,6 +87,18 @@ footer a{color:var(--muted)}
   font-weight: 500;
   opacity: 0.85;
 }
+.legal-link{
+  font-size:13px;
+  color:var(--muted);
+  text-decoration:none;
+}
+.legal-link:hover{
+  text-decoration:underline;
+  color:var(--primary);
+}
+@media (max-width:600px){
+  .foot-row{flex-direction:column;gap:4px}
+}
 
 .tag{color:var(--primary);background:rgba(23,195,200,.15);border:1px solid rgba(23,195,200,.25);padding:4px 10px;border-radius:999px;font-size:12px}
 

@@ -46,57 +46,55 @@
     });
   }
   function startAnimation(){
-    const ac = document.getElementById('animationContainer');
-    const lc = document.getElementById('logoContainer');
-    if(!ac || !lc) return;
-    setTimeout(()=>{ assemblePuzzle(); lc.classList.add('assembled'); }, 700);
-    setTimeout(()=>{}, 3200);
-    setTimeout(()=>{ lc.classList.add('move-to-header'); }, 3600);
-    setTimeout(()=>{ ac.classList.add('hidden'); }, 5000);
-    setTimeout(()=>{ ac.style.display='none'; }, 5600);
+  const ac = document.getElementById('animationContainer');
+  const lc = document.getElementById('logoContainer');
+  if(!ac || !lc) return;
+
+  setTimeout(()=>{ assemblePuzzle(); lc.classList.add('assembled'); }, 700);
+  setTimeout(()=>{}, 3200);
+  setTimeout(()=>{ lc.classList.add('move-to-header'); }, 3600);
+  setTimeout(()=>{ ac.classList.add('hidden'); }, 5000);
+  setTimeout(()=>{ ac.style.display='none'; }, 5600);
+}
+
+function fastFinishIntro(){
+  const ac = document.getElementById('animationContainer');
+  if (!ac) return;
+  ac.classList.add('hidden');
+  ac.style.display = 'none';
+}
+
+window.addEventListener('load', () => {
+  GRID = chooseGrid();
+
+  const ac = document.getElementById('animationContainer');
+  const lc = document.getElementById('logoContainer');
+
+  if (ac && lc) {
+    // resetujemo stanje, za svaki slucaj
+    ac.style.display = 'flex';
+    ac.classList.remove('hidden');
+
+    lc.classList.remove('assembled', 'move-to-header');
+    lc.innerHTML = '';
+
+    createPuzzle('assets/logo2.jpg');
+    startAnimation();
+
+    // HARD SAFETY TIMEOUT: i ako se nešto desi sa animacijama,
+    // intro sigurno nestaje posle ~7s
+    setTimeout(() => {
+      if (ac.style.display !== 'none') {
+        fastFinishIntro();
+      }
+    }, 7000);
   }
-  function fastFinishIntro(){
-    const ac = document.getElementById('animationContainer');
-    if (!ac) return;
-    ac.style.display = 'none';
-  }
-  window.addEventListener('load', () => {
-    GRID = chooseGrid();
+});
 
-    const ac = document.getElementById('animationContainer');
-    const lc = document.getElementById('logoContainer');
-
-    if (ac && lc) {
-      // resetujemo stanje, za svaki slucaj
-      ac.style.display = 'flex';
-      ac.classList.remove('hidden');
-
-      lc.classList.remove('assembled', 'move-to-header');
-      lc.innerHTML = '';
-
-      createPuzzle('assets/logo2.jpg');
-      startAnimation();
-    }
-  });
-
-  document.getElementById('skipIntro')?.addEventListener('click', fastFinishIntro);
+document.getElementById('skipIntro')?.addEventListener('click', fastFinishIntro);
 })();
 
-// ---------- THEME TOGGLE ----------
-const themeBtn = document.getElementById('themeBtn');
-const applyTheme = (t)=>{
-  document.documentElement.classList.toggle('light', t==='light');
-  localStorage.setItem('theme', t);
-  document.querySelector('.navbar').classList.toggle('light', t==='light');
-};
-(function(){
-  const saved = localStorage.getItem('theme') || 'dark';
-  applyTheme(saved);
-  themeBtn.addEventListener('click', ()=>{
-    const next = document.documentElement.classList.contains('light') ? 'dark' : 'light';
-    applyTheme(next);
-  });
-})();
+
 
 // ---------- i18n ----------
 const dict = {
@@ -332,13 +330,61 @@ const i18n = {
 // ---------- Carousel ----------
 let index = 0;
 const track = document.getElementById('track');
-function render(){ track.style.transform = `translateX(-${index*100}%)`; }
-function next(){ index = (index + 1) % track.children.length; render(); }
-function prev(){ index = (index - 1 + track.children.length) % track.children.length; render(); }
-setInterval(next, 5000);
+
+function render(){
+  if (!track) return;
+  track.style.transform = `translateX(-${index*100}%)`;
+}
+
+function next(){
+  if (!track || !track.children.length) return;
+  index = (index + 1) % track.children.length;
+  render();
+}
+
+function prev(){
+  if (!track || !track.children.length) return;
+  index = (index - 1 + track.children.length) % track.children.length;
+  render();
+}
+
+// Auto slide (ako postoji track)
+if (track && track.children.length > 1) {
+  setInterval(next, 5000);
+}
+
+// Touch / swipe podrška na mobilnim uređajima
+if (track) {
+  let startX = null;
+
+  track.addEventListener('touchstart', (e) => {
+    if (!e.touches || !e.touches.length) return;
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  track.addEventListener('touchend', (e) => {
+    if (startX === null) return;
+    const endX = e.changedTouches && e.changedTouches.length
+      ? e.changedTouches[0].clientX
+      : startX;
+    const diff = endX - startX;
+
+    // prag ~60px da bi swipe bio "nameran"
+    if (Math.abs(diff) > 60) {
+      if (diff > 0) {
+        prev();
+      } else {
+        next();
+      }
+    }
+    startX = null;
+  });
+}
+
 
 // ---------- Contact (backend optional) ----------
 const CONTACT_ENDPOINT = ""; // set to your API endpoint to enable POST
+
 async function sendViaBackend(payload){
   if(!CONTACT_ENDPOINT) return false;
   try{
@@ -352,33 +398,62 @@ async function sendViaBackend(payload){
     return false;
   }
 }
+
 async function sendMail(form){
   const data = new FormData(form);
-  const subject = encodeURIComponent('[SofTech Inquiry] ' + data.get('name'));
-  const body = encodeURIComponent(`${data.get('message')}
 
---
-${data.get('name')}
-${data.get('email')}`);
-  const payload = {
-    name:data.get('name'),
-    email:data.get('email'),
-    message:data.get('message')
-  };
+  const name    = (data.get('name')    || '').trim();
+  const email   = (data.get('email')   || '').trim();
+  const message = (data.get('message') || '').trim();
+
   const status = document.getElementById('formStatus');
-  const ok = await sendViaBackend(payload);
-  if(ok){
-    status.textContent = i18n.current==='sr'
-      ? 'Poruka poslata. Hvala!'
-      : 'Message sent. Thank you!';
+  if (status) {
+    status.classList.add('visible');
+  }
+
+  // Osnovna validacija emaila
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  if (!name || !emailOk || !message) {
+    if (status) {
+      status.textContent = i18n.current === 'sr'
+        ? 'Molimo popunite ime, ispravan email i poruku.'
+        : 'Please fill in your name, a valid email and a message.';
+    }
     return false;
   }
-  const email = 'contact@softechrs.com';
-  const href = `mailto:${email}?subject=${subject}&body=${body}`;
-  status.textContent = i18n.t('contact.openMail');
+
+  const subject = encodeURIComponent('[SofTech Inquiry] ' + name);
+  const body = encodeURIComponent(
+`${message}
+
+--
+${name}
+${email}`
+  );
+
+  const payload = { name, email, message };
+
+  const ok = await sendViaBackend(payload);
+  if(ok){
+    if (status) {
+      status.textContent = i18n.current==='sr'
+        ? 'Poruka poslata. Hvala!'
+        : 'Message sent. Thank you!';
+    }
+    // ne osvežavamo stranicu
+    return false;
+  }
+
+  const mailTo = 'contact@softechrs.com';
+  const href = `mailto:${mailTo}?subject=${subject}&body=${body}`;
+  if (status) {
+    status.textContent = i18n.t('contact.openMail');
+  }
   window.location.href = href;
   return false;
 }
+
 
 // ---------- Auto year in footer ----------
 document.addEventListener('DOMContentLoaded', () => {
@@ -387,3 +462,175 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 });
+
+// ---------- Navbar scroll state + scroll progress ----------
+document.addEventListener('DOMContentLoaded', () => {
+  const navbar = document.querySelector('.navbar');
+  const progressBar = document.querySelector('.scroll-progress-bar');
+
+  function updateNavbarOnScroll(){
+    if (!navbar) return;
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  }
+
+  function updateScrollProgress(){
+    if (!progressBar) return;
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop || 0;
+    const scrollMax = (doc.scrollHeight - doc.clientHeight) || 1;
+    const pct = scrollTop / scrollMax;
+    progressBar.style.width = (pct * 100) + '%';
+  }
+
+  // inicijalno stanje
+  updateNavbarOnScroll();
+  updateScrollProgress();
+
+  window.addEventListener('scroll', () => {
+    updateNavbarOnScroll();
+    updateScrollProgress();
+  });
+
+  window.addEventListener('resize', updateScrollProgress);
+});
+
+
+
+
+// ============= AI MEGA BACKGROUND SCROLL BLEND =============
+document.addEventListener('DOMContentLoaded', () => {
+  const brain = document.querySelector('.ai-bg-brain');
+  const data  = document.querySelector('.ai-bg-data');
+  const city  = document.querySelector('.ai-bg-city');
+
+  if (!brain || !data || !city) return;
+
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  function updateBgByScroll() {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || window.pageYOffset || 0;
+    const scrollMax = (doc.scrollHeight - doc.clientHeight) || 1;
+    const p = scrollTop / scrollMax; // 0 = vrh stranice, 1 = dno
+
+    let brainO = 0, dataO = 0, cityO = 0;
+
+    // Segmenti:
+    // 0.00–0.25  -> čisti brain
+    // 0.25–0.40  -> blend brain -> data
+    // 0.40–0.60  -> čisti data
+    // 0.60–0.75  -> blend data -> city
+    // 0.75–1.00  -> čisti city
+
+    if (p <= 0.25) {
+      // gornjih ~25% stranice
+      brainO = 1;
+      dataO  = 0;
+      cityO  = 0;
+    } else if (p <= 0.40) {
+      // prelaz brain -> data
+      const t = (p - 0.25) / 0.15; // 0 → 1
+      brainO = lerp(1, 0, t);
+      dataO  = lerp(0, 1, t);
+      cityO  = 0;
+    } else if (p <= 0.60) {
+      // sredina – podaci / serveri
+      brainO = 0;
+      dataO  = 1;
+      cityO  = 0;
+    } else if (p <= 0.75) {
+      // prelaz data -> city
+      const t = (p - 0.60) / 0.15; // 0 → 1
+      brainO = 0;
+      dataO  = lerp(1, 0, t);
+      cityO  = lerp(0, 1, t);
+    } else {
+      // donji deo – futuristički grad / finalni proizvod
+      brainO = 0;
+      dataO  = 0;
+      cityO  = 1;
+    }
+
+    brain.style.opacity = brainO.toFixed(3);
+    data.style.opacity  = dataO.toFixed(3);
+    city.style.opacity  = cityO.toFixed(3);
+  }
+
+  // Pozovi odmah (za slučaj da nije skrol na samom vrhu)
+  updateBgByScroll();
+
+  window.addEventListener('scroll', updateBgByScroll, { passive: true });
+  window.addEventListener('resize', updateBgByScroll);
+});
+
+
+// ---------- Back to Top dugme ----------
+document.addEventListener('DOMContentLoaded', () => {
+  const backBtn = document.getElementById('backToTop');
+
+  function toggleBackToTop() {
+    if (window.scrollY > 300) {
+      backBtn.classList.add('visible');
+    } else {
+      backBtn.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', toggleBackToTop);
+
+  backBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+
+// ---------- Responsive navbar (hamburger) ----------
+document.addEventListener('DOMContentLoaded', () => {
+  const navToggle = document.getElementById('navToggle');
+  const navLinks  = document.getElementById('navLinks');
+
+  if (!navToggle || !navLinks) return;
+
+  function closeNav(){
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleNav(){
+    const willOpen = !navLinks.classList.contains('open');
+    navLinks.classList.toggle('open', willOpen);
+    navToggle.classList.toggle('open', willOpen);
+    navToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  }
+
+  navToggle.addEventListener('click', toggleNav);
+
+  // Kada korisnik klikne na neki link – zatvori meni
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      closeNav();
+    });
+  });
+});
+
+
+const backToTopBtn = document.getElementById('backToTop');
+if (backToTopBtn) {
+  window.addEventListener('scroll', () => {
+    // ...
+  });
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+const scrollBar = document.getElementById('scrollProgressBar');
+if (scrollBar) {
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    scrollBar.style.width = progress + '%';
+  });
+}

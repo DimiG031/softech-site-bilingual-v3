@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="sr" data-lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web sajtovi i landing stranice – SofTechRS</title>
+  <meta name="description"
+        content="Web sajtovi i landing stranice: od koncepta do konverzije – praktičan vodič kako da napraviš stranicu koja zaista radi.">
+
+  <link rel="stylesheet" href="../web-blog-style.css" />
+</head>
+<body>
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="/" class="brand">
+        <div class="brand-logo">
+          <span>ST</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">SofTechRS</span>
+          <span class="brand-subtitle">Web, SaaS & desktop rešenja</span>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="nav-desktop">
+        <a href="/#services">Usluge</a>
+        <a href="/#transport-suite">Transport Suite</a>
+        <a href="/#showcase">Projekti</a>
+        <a href="/#about">O nama</a>
+        <a href="/#contact" class="btn-primary">Kontakt</a>
+        <button class="lang-switch" type="button">
+          🌐 <span>SRB / ENG</span>
+        </button>
+      </nav>
+
+      <!-- Mobile toggle -->
+      <button class="nav-toggle" id="navToggle" aria-label="Otvori meni">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile nav -->
+    <nav class="nav-mobile" id="navMobile">
+      <a href="/#services">Usluge</a>
+      <a href="/#transport-suite">Transport Suite</a>
+      <a href="/#showcase">Projekti</a>
+      <a href="/#about">O nama</a>
+      <a href="/#contact" class="btn-primary">Kontakt</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO (BlogHero) -->
+    <section class="hero">
+      <div class="hero-blobs">
+        <div class="blob blob-blue"></div>
+        <div class="blob blob-purple"></div>
+      </div>
+
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <!-- meta -->
+          <div class="hero-meta-row">
+            <span class="pill pill-light">
+              <span class="pill-icon">🏷</span>
+              <span>Blog</span>
+            </span>
+            <span class="dot">•</span>
+            <span class="meta-text">Web & UX</span>
+            <span class="dot">•</span>
+            <span class="meta-text">📅 December 2025</span>
+            <span class="meta-text">⏱ 8 min čitanja</span>
+          </div>
+
+          <!-- title -->
+          <h1 class="hero-title">
+            Web sajtovi i landing stranice: kako od ideje do stranice koja zaista
+            <span class="text-gradient">radi</span>
+          </h1>
+
+          <!-- subtitle -->
+          <p class="hero-subtitle">
+            Od koncepta do konverzije – praktičan vodič kroz kreiranje web stranica koje nisu samo lepe,
+            već donose merljive rezultate kroz brzinu, jasnu poruku, odličan UX i SEO osnove.
+          </p>
+
+          <!-- hero image -->
+          <figure class="hero-image">
+            <img
+              src="https://images.unsplash.com/photo-1677469684112-5dfb3aa4d3df?auto=format&fit=crop&w=1200&q=80"
+              alt="Modern web design"
+            />
+            <div class="hero-image-gradient"></div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG CONTENT (BlogContent) -->
+    <article class="blog">
+      <div class="container blog-inner">
+        <div class="blog-max">
+
+          <!-- Intro -->
+          <section class="section">
+            <p class="lead">
+              U digitalnom okruženju gde korisnici donose odluke za sekunde, vaš web sajt ili landing stranica
+              mora biti više od samo "online prisustva". To je vaš najvažniji prodajni alat, prvi utisak i često
+              jedina šansa da pridobijete poverenje potencijalnog klijenta.
+            </p>
+            <p class="lead">
+              Iza svake uspešne stranice stoji niz pažljivo donetih odluka o strukturi, sadržaju, dizajnu i
+              performansama. U ovom članku delimo naš proces i praktične savete kako da stvorite stranicu koja
+              ne samo da dobro izgleda, već donosi konkretne rezultate.
+            </p>
+          </section>
+
+          <!-- Section 1: Šta očekuješ... -->
+          <section class="section">
+            <h2 class="section-title with-icon">
+              <span class="section-icon">🎯</span>
+              <span>Šta očekuješ od modernog sajta u 2025.</span>
+            </h2>
+
+            <p class="section-text">
+              Klasičan "online flajer" više nije dovoljan. Moderni web sajt mora da ispuni nekoliko ključnih kriterijuma
+              pre nego što uopšte razmišljamo o dizajnu ili tehnologiji:
+            </p>
+
+            <div class="grid-2 gap-md">
+              <div class="card-soft">
+                <div class="card-icon">👁</div>
+                <h3>Jasna poruka</h3>
+                <p>Posetilac treba da razume šta nudite u roku od 3 sekunde.</p>
+              </div>
+              <div class="card-soft">
+                <div class="card-icon">🖱</div>
+                <h3>Konkretan CTA</h3>
+                <p>Bar jedan jasan poziv na akciju koji vodi ka konverziji.</p>
+              </div>
+              <div class="card-soft">
+                <div class="card-icon">👥</div>
+                <h3>Definisana publika</h3>
+                <p>Sadržaj i ton prilagođen specifičnoj ciljnoj grupi.</p>
+              </div>
+              <div class="card-soft">
+                <div class="card-icon">🚀</div>
+                <h3>Brzina učitavanja</h3>
+                <p>Stranica se učitava za manje od 3 sekunde.</p>
+              </div>
+            </div>
+
+            <div class="note">
+              <span class="note-label">Pro savet:</span>
+              <span>
+                Pre nego što započnete dizajn, odgovorite na tri pitanja:
+                Ko je vaša publika? Koji problem rešavate? Koja je glavna akcija koju želite da korisnik preduzme?
+              </span>
+            </div>
+          </section>
+
+          <!-- Image break -->
+          <section class="section">
+            <figure class="image-break">
+              <img
+                src="https://images.unsplash.com/photo-1575510394945-6ffdb973cd40?auto=format&fit=crop&w=1200&q=80"
+                alt="Landing page conversion optimization"
+              />
+            </figure>
+          </section>
+
+          <!-- Section 2: Landing vs Website -->
+          <section class="section">
+            <h2 class="section-title">Landing stranica vs. klasičan sajt</h2>
+
+            <p class="section-text">
+              Često dobijamo pitanje: "Da li mi treba landing stranica ili potpun sajt?" Odgovor zavisi od vašeg cilja,
+              ali evo ključnih razlika koje treba da znate:
+            </p>
+
+            <div class="grid-2 gap-lg">
+              <!-- Landing -->
+              <div class="card-border-blue">
+                <div class="card-badge-icon">🎯</div>
+                <h3>Landing stranica</h3>
+                <ul class="bullet-list">
+                  <li>Jedna jasna ponuda ili kampanja</li>
+                  <li>Minimalne distrakcije (često bez menija)</li>
+                  <li>Jedan cilj: konverzija</li>
+                  <li>Idealna za plaćene kampanje</li>
+                  <li>Lako merenje performansi</li>
+                  <li>Brza izrada i testiranje</li>
+                </ul>
+              </div>
+
+              <!-- Full site -->
+              <div class="card-border-purple">
+                <div class="card-badge-icon">📊</div>
+                <h3>Potpun sajt</h3>
+                <ul class="bullet-list">
+                  <li>Više ponuda i usluga</li>
+                  <li>Kompleksna navigacija</li>
+                  <li>Različiti tokovi korisnika</li>
+                  <li>Edukativni sadržaj i blog</li>
+                  <li>Dugoročna SEO strategija</li>
+                  <li>Brand building i poverenje</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card-gradient">
+              <h4>Anatomija uspešne landing stranice</h4>
+              <div class="steps">
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-text">
+                    <strong>Hero sekcija:</strong>
+                    <span> Jasna poruka, vrednost u jednoj rečenici i vidljiv CTA iznad pregiba.</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-text">
+                    <strong>Problem/Rešenje:</strong>
+                    <span> Identifikujte problem korisnika i pokažite kako ga rešavate.</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-text">
+                    <strong>Benefiti:</strong>
+                    <span> 3–5 ključnih prednosti sa vizuelnim prikazom.</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">4</div>
+                  <div class="step-text">
+                    <strong>Dokazi:</strong>
+                    <span> Testimonijali, logoi klijenata, case study ili statistike.</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">5</div>
+                  <div class="step-text">
+                    <strong>Finalni CTA:</strong>
+                    <span> Ponovljen poziv na akciju sa kontakt formom.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Image break 2 -->
+          <section class="section">
+            <figure class="image-break">
+              <img
+                src="https://images.unsplash.com/photo-1662330357283-93ab0a0c4843?auto=format&fit=crop&w=1200&q=80"
+                alt="Web design mockup"
+              />
+            </figure>
+          </section>
+
+          <!-- Section 3: Kartice -->
+          <section class="section">
+            <h2 class="section-title">Zašto koristimo kartice na početnoj stranici</h2>
+
+            <p class="section-text">
+              Kartice (card-based design) su postale standard u modernom web dizajnu i to nije slučajno.
+              One omogućavaju korisnicima da brzo skeniraju sadržaj i pronađu ono što ih interesuje.
+            </p>
+
+            <div class="grid-3 gap-md">
+              <div class="card-metric">
+                <div class="card-icon">👁</div>
+                <div class="metric-value">80%</div>
+                <h4>Brzo skeniranje</h4>
+                <p>korisnika samo skenira sadržaj umesto da čita.</p>
+              </div>
+              <div class="card-metric">
+                <div class="card-icon">🖱</div>
+                <div class="metric-value">+35%</div>
+                <h4>Viša konverzija</h4>
+                <p>povećanje klik-rata sa card dizajnom.</p>
+              </div>
+              <div class="card-metric">
+                <div class="card-icon">📱</div>
+                <div class="metric-value">70%</div>
+                <h4>Mobile-friendly</h4>
+                <p>saobraćaja dolazi sa mobilnih uređaja.</p>
+              </div>
+            </div>
+
+            <div class="card-gradient-dark">
+              <h4>Elementi dobre kartice</h4>
+              <div class="grid-2 gap-sm">
+                <div class="check-row">Jasan vizuelni identifikator (ikona ili slika)</div>
+                <div class="check-row">Kratak, snažan naslov (max 6 reči)</div>
+                <div class="check-row">Opis koji komunicira vrednost (2–3 rečenice)</div>
+                <div class="check-row">Opcioni link ka detaljnijoj stranici</div>
+                <div class="check-row">Konzistentan dizajn kroz sve kartice</div>
+                <div class="check-row">Hover efekti koji ukazuju na interaktivnost</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Image break 3 -->
+          <section class="section">
+            <figure class="image-break">
+              <img
+                src="https://images.unsplash.com/photo-1565268872818-0f20305ad906?auto=format&fit=crop&w=1200&q=80"
+                alt="Responsive website design"
+              />
+            </figure>
+          </section>
+
+          <!-- Section 4: Na šta obraćamo pažnju -->
+          <section class="section">
+            <h2 class="section-title with-icon">
+              <span class="section-icon">⚡</span>
+              <span>Na šta obraćamo pažnju u praksi</span>
+            </h2>
+
+            <p class="section-text">
+              Dobro dizajnirana stranica je samo polovina posla. Tehnička izvedba određuje koliko će stranica
+              zaista biti korisna, brza i rangirana u pretraživačima.
+            </p>
+
+            <!-- Brzina -->
+            <div class="card-box">
+              <div class="card-box-header">
+                <div class="card-badge-icon green">⚡</div>
+                <div>
+                  <h3>Brzina učitavanja</h3>
+                  <p>Svaka sekunda kašnjenja smanjuje konverziju za 7%. Naš cilj je učitavanje ispod 2 sekunde.</p>
+                </div>
+              </div>
+              <ul class="bullet-list indent">
+                <li>Optimizacija slika (WebP format, lazy loading)</li>
+                <li>Minimizacija CSS i JavaScript fajlova</li>
+                <li>CDN za brže serviranje sadržaja</li>
+                <li>Browser caching i kompresija</li>
+                <li>Eliminacija nepotrebnih resursa</li>
+              </ul>
+            </div>
+
+            <!-- Responzivnost -->
+            <div class="card-box">
+              <div class="card-box-header">
+                <div class="card-badge-icon blue">📱</div>
+                <div>
+                  <h3>Responzivnost</h3>
+                  <p>Mobile-first pristup: prvo dizajniramo za mobilne, pa skaliramo na desktop.</p>
+                </div>
+              </div>
+              <ul class="bullet-list indent">
+                <li>Testiranje na realnim uređajima (iOS, Android)</li>
+                <li>Touch-friendly elementi (min. 44x44px)</li>
+                <li>Čitljiv font bez zumiranja (min. 16px)</li>
+                <li>Prilagođene slike za različite rezolucije</li>
+                <li>Vertikalna navigacija na mobilnim uređajima</li>
+              </ul>
+            </div>
+
+            <!-- SEO -->
+            <div class="card-box">
+              <div class="card-box-header">
+                <div class="card-badge-icon purple">📈</div>
+                <div>
+                  <h3>SEO osnove</h3>
+                  <p>Tehnički SEO od prvog dana omogućava organsku vidljivost bez dodatnih troškova.</p>
+                </div>
+              </div>
+              <ul class="bullet-list indent">
+                <li>Semantički HTML (H1, H2, proper heading hierarchy)</li>
+                <li>Meta naslovi i opisi za svaku stranicu</li>
+                <li>Schema markup za bolje rezultate pretrage</li>
+                <li>XML sitemap i robots.txt</li>
+                <li>Alt text za sve slike</li>
+                <li>Čist URL struktura</li>
+                <li>Internal linking strategija</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Image break 4 -->
+          <section class="section">
+            <figure class="image-break">
+              <img
+                src="https://images.unsplash.com/photo-1593438002985-ce805be04da9?auto=format&fit=crop&w=1200&q=80"
+                alt="Website performance metrics"
+              />
+            </figure>
+          </section>
+
+          <!-- Section 5: Kada treba landing -->
+          <section class="section">
+            <h2 class="section-title">Kada ti zaista treba posebna landing stranica</h2>
+
+            <p class="section-text">
+              Landing stranice su najmoćniji alat za konverziju u specifičnim situacijama.
+              Evo kada vredi investirati u dedikovan landing:
+            </p>
+
+            <div class="grid-2 gap-md">
+              <div class="card-soft border-strong">
+                <h4>Plaćene kampanje</h4>
+                <p>Google Ads, Facebook Ads, LinkedIn – svaka kampanja zasluđuje svoj landing.</p>
+                <span class="pill metric">3x veća konverzija nego slanje na početnu</span>
+              </div>
+              <div class="card-soft border-strong">
+                <h4>Promocija proizvoda</h4>
+                <p>Lansiranje novog proizvoda ili usluge sa fokusiranom porukom.</p>
+                <span class="pill metric">Lakše A/B testiranje i optimizacija</span>
+              </div>
+              <div class="card-soft border-strong">
+                <h4>Event registracije</h4>
+                <p>Webinari, konferencije ili online događaji.</p>
+                <span class="pill metric">Jednostavno praćenje broja prijava</span>
+              </div>
+              <div class="card-soft border-strong">
+                <h4>Lead generation</h4>
+                <p>eBook download, free trial, newsletter signup.</p>
+                <span class="pill metric">Fokus na jedan conversion goal</span>
+              </div>
+            </div>
+
+            <div class="note warm">
+              <div class="note-heading">💡 Pro tip: Kada NE treba praviti novi landing</div>
+              <p>
+                Ako već imate stranicu sa dobrim performansama, umesto nove landing stranice razmislite o:
+              </p>
+              <ul class="bullet-list">
+                <li>Optimizaciji postojeće stranice (bolji copy, jači CTA)</li>
+                <li>Dodavanju dinamičkog sadržaja baziranog na UTM parametrima</li>
+                <li>Personalizaciji hero sekcije prema izvoru saobraćaja</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Image break 5 -->
+          <section class="section">
+            <figure class="image-break">
+              <img
+                src="https://images.unsplash.com/photo-1599658880436-c61792e70672?auto=format&fit=crop&w=1200&q=80"
+                alt="Digital marketing analytics"
+              />
+            </figure>
+          </section>
+
+          <!-- Section 6: Naš proces -->
+          <section class="section">
+            <h2 class="section-title">Naš proces kreiranja</h2>
+
+            <p class="section-text">
+              Svaki projekat je jedinstven, ali naš pristup sledi proverenu strukturu koja garantuje rezultate:
+            </p>
+
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-step">01</div>
+                <div class="timeline-body">
+                  <div class="timeline-header">
+                    <h4>Discovery & Strategija</h4>
+                    <span class="timeline-duration">3–5 dana</span>
+                  </div>
+                  <p>
+                    Razumevanje vaše industrije, konkurencije i ciljeva. Definisanje target audience i conversion goals.
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-step">02</div>
+                <div class="timeline-body">
+                  <div class="timeline-header">
+                    <h4>Wireframes & Struktura</h4>
+                    <span class="timeline-duration">2–3 dana</span>
+                  </div>
+                  <p>
+                    Kreiranje wireframe-a koji mapira korisničko putovanje i hijerarhiju informacija.
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-step">03</div>
+                <div class="timeline-body">
+                  <div class="timeline-header">
+                    <h4>Dizajn & Branding</h4>
+                    <span class="timeline-duration">5–7 dana</span>
+                  </div>
+                  <p>
+                    Vizuelni identitet, color palette, tipografija i UI elementi koji podržavaju vašu poruku.
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-step">04</div>
+                <div class="timeline-body">
+                  <div class="timeline-header">
+                    <h4>Development</h4>
+                    <span class="timeline-duration">7–14 dana</span>
+                  </div>
+                  <p>
+                    Čist kod, optimizovane performanse, responsive design i SEO implementation.
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-step">05</div>
+                <div class="timeline-body">
+                  <div class="timeline-header">
+                    <h4>Testing & Launch</h4>
+                    <span class="timeline-duration">2–3 dana</span>
+                  </div>
+                  <p>
+                    Cross-browser testing, performance audit, security check i go-live.
+                  </p>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-step">06</div>
+                <div class="timeline-body">
+                  <div class="timeline-header">
+                    <h4>Optimizacija</h4>
+                    <span class="timeline-duration">Ongoing</span>
+                  </div>
+                  <p>
+                    Analiza podataka, A/B testiranje i iterativna poboljšanja conversion rate-a.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Key takeaways -->
+          <section class="section">
+            <div class="takeaways">
+              <h3>Ključni zaključci</h3>
+              <div class="grid-2 gap-sm">
+                <div class="check-row">Svaka stranica mora imati jasnu poruku i jedan glavni cilj.</div>
+                <div class="check-row">Landing stranice su optimizovane za konverziju, sajtovi za informisanje.</div>
+                <div class="check-row">Brzina, responzivnost i SEO nisu opcioni – to su osnove.</div>
+                <div class="check-row">Card-based dizajn olakšava skeniranje i povećava engagement.</div>
+                <div class="check-row">Svaka kampanja zasluđuje dedikovan landing page.</div>
+                <div class="check-row">Kontinuirana optimizacija daje bolje rezultate od “set and forget” pristupa.</div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </article>
+
+    <!-- CTA (BlogCTA) -->
+    <section class="cta">
+      <div class="container">
+        <div class="cta-wrap">
+          <div class="cta-left">
+            <h3>Treba ti landing stranica za sledeću kampanju?</h3>
+            <p>
+              Javi nam cilj, publiku i rok – predložićemo strukturu i tehnologiju koja ti najviše ima smisla.
+            </p>
+
+            <div class="cta-items">
+              <div class="cta-item">
+                <div class="cta-icon">💬</div>
+                <div>
+                  <div class="cta-item-title">Besplatna konsultacija</div>
+                  <div class="cta-item-sub">30-min razgovor o vašem projektu</div>
+                </div>
+              </div>
+              <div class="cta-item">
+                <div class="cta-icon">📅</div>
+                <div>
+                  <div class="cta-item-title">Brza realizacija</div>
+                  <div class="cta-item-sub">Landing stranica za 7–14 dana</div>
+                </div>
+              </div>
+            </div>
+
+            <a href="/#contact" class="btn-cta">
+              <span>Kontaktiraj nas</span>
+              <span class="btn-arrow">→</span>
+            </a>
+          </div>
+
+          <div class="cta-right">
+            <h4>Šta dobijaš:</h4>
+            <ul class="bullet-list">
+              <li>Strategiju stranice baziranu na vašim ciljevima</li>
+              <li>Custom dizajn prilagođen vašem brendu</li>
+              <li>Mobile-first responsive implementaciju</li>
+              <li>SEO optimizaciju i brze performanse</li>
+              <li>Google Analytics i conversion tracking</li>
+              <li>A/B testing setup za optimizaciju</li>
+              <li>30 dana besplatne podrške nakon launcha</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- share -->
+        <div class="share">
+          <p>Podeli članak:</p>
+          <div class="share-buttons">
+            <button type="button">LinkedIn</button>
+            <button type="button">Twitter</button>
+            <button type="button">Facebook</button>
+            <button type="button">Email</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER – možeš zameniti svojim postojećim -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> SofTechRS. Sva prava zadržana.</span>
+      <div class="footer-links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <span>/</span>
+        <a href="/terms.html">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top (BackToTop) -->
+  <button
+    class="scroll-top"
+    id="scrollTopBtn"
+    aria-label="Povratak na vrh"
+  >
+    ↑
+  </button>
+
+  <script src="../script.js"></script>
+  <script src="../web-blog.js" ></script>
+</body>
+</html>

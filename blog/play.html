@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>404 – Grudvanje | SofTechRS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #06121f;
+      --card: #0f2138;
+      --accent: #2af598;
+      --text: #eaf1f8;
+      --muted: #97a4b8;
+      --danger: #ff5c7a;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      min-height:100vh;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:radial-gradient(circle at top,#16345c 0,#06121f 50%,#020710 100%);
+      color:var(--text);
+      display:flex;align-items:center;justify-content:center;padding:16px;
+    }
+    .wrapper{
+      width:100%;max-width:1100px;
+      display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.2fr);
+      gap:32px;align-items:center;
+    }
+    @media(max-width:860px){.wrapper{grid-template-columns:minmax(0,1fr)}}
+    .info{
+      padding:24px;
+      background:linear-gradient(135deg,rgba(15,33,56,.95),rgba(8,22,40,.98));
+      border-radius:20px;border:1px solid rgba(255,255,255,.06);
+      box-shadow:0 24px 60px rgba(0,0,0,.6);backdrop-filter:blur(12px);
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:4px 10px;border-radius:999px;
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+      font-size:12px;color:var(--muted);margin-bottom:14px;
+    }
+    .badge-dot{width:8px;height:8px;border-radius:999px;background:#2af598;box-shadow:0 0 16px #2af598;}
+    h1{font-size:clamp(38px,4vw,48px);line-height:1.05;margin-bottom:10px;}
+    h1 span{background:linear-gradient(120deg,#2af598,#00f0ff,#38bdf8);-webkit-background-clip:text;color:transparent;}
+    .code{font-size:80%;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+    .lead{color:var(--muted);font-size:15px;line-height:1.6;margin-bottom:18px;}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}
+    .btn{
+      padding:10px 18px;border-radius:999px;font-size:14px;font-weight:500;
+      cursor:pointer;border:1px solid transparent;
+      display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+      transition:.15s ease;
+    }
+    .btn-primary{
+      background:radial-gradient(circle at top left,#2af598 0,#00f0ff 40%,#2563eb 100%);
+      color:#02131c;box-shadow:0 14px 30px rgba(0,0,0,.6);
+    }
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 18px 40px rgba(0,0,0,.7);}
+    .btn-ghost{
+      background:rgba(9,18,36,.9);color:var(--muted);border-color:rgba(255,255,255,.08);
+    }
+    .btn-ghost:hover{background:rgba(9,21,41,.98);color:var(--text);}
+    .hint{margin-top:18px;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+    .hint-kbd{
+      padding:3px 6px;border-radius:6px;border:1px solid rgba(255,255,255,.12);
+      font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;
+      background:rgba(0,0,0,.2);
+    }
+
+    .game-card{
+      background:radial-gradient(circle at top,rgba(42,245,152,.08) 0,rgba(10,24,43,.98) 40%,#040814 100%);
+      border-radius:22px;padding:16px 16px 20px;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 22px 50px rgba(0,0,0,.9),0 0 0 1px rgba(58,94,163,.35);
+      position:relative;overflow:hidden;
+    }
+    .game-header{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:12px;font-size:13px;color:var(--muted);
+    }
+    .game-title{font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:11px;opacity:.9;}
+    .game-stats{display:flex;align-items:center;gap:8px;}
+    .pill{
+      padding:3px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.08);
+      background:rgba(4,12,24,.9);font-size:11px;
+    }
+    .pill strong{color:#2af598;}
+    .status-dot{width:8px;height:8px;border-radius:999px;background:#2af598;box-shadow:0 0 12px #2af598;display:inline-block;margin-right:4px;}
+    canvas{
+      display:block;width:100%;border-radius:16px;
+      /* smanjen sjaj "sunca" */
+      background:radial-gradient(
+        circle at top,
+        #e0f2fe 0,
+        #bfdbfe 30%,
+        #60a5fa 65%,
+        #1d4ed8 90%,
+        #020617 100%
+      );
+      border:1px solid rgba(255,255,255,.35);
+    }
+    .game-footer{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-top:10px;font-size:12px;color:var(--muted);
+    }
+    .lives{display:flex;gap:4px;}
+    .heart{width:14px;height:14px;border-radius:4px;background:var(--danger);box-shadow:0 0 14px rgba(255,92,122,.5);}
+    .heart.lost{background:rgba(255,92,122,.25);box-shadow:none;}
+    .game-btn{
+      border-radius:999px;border:1px solid rgba(255,255,255,.15);
+      background:rgba(4,12,24,.9);color:var(--text);font-size:11px;
+      padding:5px 10px;cursor:pointer;text-transform:uppercase;
+      letter-spacing:.14em;font-weight:600;
+    }
+    .overlay-msg{
+      position:absolute;inset:48px 20px 54px;
+      background:radial-gradient(circle at top,rgba(15,23,42,.8),rgba(15,23,42,.98));
+      border-radius:16px;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;text-align:center;
+      padding:20px;pointer-events:none;opacity:0;transition:opacity .18s ease;
+    }
+    .overlay-msg.visible{opacity:1;pointer-events:auto;}
+    .overlay-msg h2{font-size:20px;margin-bottom:6px;}
+    .overlay-msg p{font-size:13px;color:var(--muted);margin-bottom:14px;}
+    .overlay-msg .score-big{
+      font-size:26px;margin-bottom:8px;
+      background:linear-gradient(120deg,#2af598,#00f0ff,#38bdf8);
+      -webkit-background-clip:text;color:transparent;font-weight:700;
+    }
+    .overlay-msg .overlay-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <section class="info">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      SofTechRS · 404 mini-igrica
+    </div>
+    <div class="code">Error 404</div>
+    <h1><span>Stranica</span> nije pronađena</h1>
+    <p class="lead">
+      Ali nema veze – dok tražimo pravi URL, možeš da odigraš brzo
+      <strong>grudvanje</strong>. Pobedi što više protivnika, izbegni njihove grudve
+      i onda se vrati na sajt kao pobednik.
+    </p>
+    <div class="actions">
+      <a href="/" class="btn btn-primary">← Nazad na početnu</a>
+      <button id="btnFocusGame" class="btn btn-ghost" type="button">🎮 Fokusiraj igru</button>
+    </div>
+    <div class="hint">
+      <span>Kontrole:</span>
+      <span class="hint-kbd">← / → ili A / D</span>
+      <span class="hint-kbd">Space – baci grudvu</span>
+    </div>
+  </section>
+
+  <section class="game-card">
+    <div class="game-header">
+      <div class="game-title">Snowball Arena · 404 Edition</div>
+      <div class="game-stats">
+        <div class="pill"><span class="status-dot"></span> LIVE</div>
+        <div class="pill">Lvl: <strong id="levelLabel">1</strong></div>
+        <div class="pill">Score: <strong id="scoreLabel">0</strong></div>
+      </div>
+    </div>
+
+    <canvas id="gameCanvas" width="800" height="450"></canvas>
+
+    <div class="overlay-msg visible" id="overlay">
+      <h2>Grudvanje je spremno</h2>
+      <p>Lik dole u plavoj jakni je tvoj igrač. Pomeri se levo/desno i pogodi protivnike grudvama.</p>
+      <div class="score-big" id="overlayScore">Score: 0 · Level 1</div>
+      <div class="overlay-actions">
+        <button id="btnStart" class="btn btn-primary" type="button">▶ Start</button>
+        <a href="/" class="btn btn-ghost">← Početna</a>
+      </div>
+    </div>
+
+    <div class="game-footer">
+      <div class="lives" id="lives">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+      </div>
+      <button id="btnRestart" class="game-btn" type="button">Restart</button>
+    </div>
+  </section>
+</div>
+
+<script>
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+
+  const overlay = document.getElementById('overlay');
+  const overlayScore = document.getElementById('overlayScore');
+  const scoreLabel = document.getElementById('scoreLabel');
+  const levelLabel = document.getElementById('levelLabel');
+  const livesContainer = document.getElementById('lives');
+
+  const btnStart = document.getElementById('btnStart');
+  const btnRestart = document.getElementById('btnRestart');
+  const btnFocusGame = document.getElementById('btnFocusGame');
+
+  let keys = {};
+  let animationId = null;
+
+  const game = {
+    running:false,
+    lastTime:0,
+    score:0,
+    lives:3,
+    enemyFireTimer:0,
+    enemyFireInterval:1300,
+    playerFireCooldown:0,
+    level:1,
+    waveInTier:1,
+    extraShooters:0,
+    baseEnemyCount:5,
+    baseFireInterval:1300
+  };
+
+  const player = {
+    x: canvas.width / 2,
+    y: canvas.height - 118,
+    width:40,
+    height:50,
+    speed:260
+  };
+
+  const enemies = [];
+  const playerBullets = [];
+  const enemyBullets = [];
+
+  function updateScoreUI(){ scoreLabel.textContent = game.score; }
+  function updateLevelUI(){ levelLabel.textContent = game.level; }
+  function updateLivesUI(){
+    [...livesContainer.children].forEach((heart, idx) => {
+      heart.classList.toggle('lost', idx >= game.lives);
+    });
+  }
+
+  function spawnEnemies(){
+    enemies.length = 0;
+    const count = game.baseEnemyCount + game.extraShooters;
+    const spacingX = canvas.width / (count + 1);
+    for(let i=0;i<count;i++){
+      enemies.push({
+        x: spacingX*(i+1),
+        y:90,
+        width:40,
+        height:45,
+        dir: i%2===0 ? 1 : -1,
+        speed: 60 + i*8
+      });
+    }
+  }
+
+  function resetGame(){
+    game.running = false;
+    game.score = 0;
+    game.lives = 3;
+    game.enemyFireTimer = 0;
+    game.playerFireCooldown = 0;
+    game.level = 1;
+    game.waveInTier = 1;
+    game.extraShooters = 0;
+    game.baseEnemyCount = 5;
+    game.baseFireInterval = 1300;
+    game.enemyFireInterval = game.baseFireInterval;
+
+    player.x = canvas.width/2;
+    player.y = canvas.height - 118;
+
+    playerBullets.length = 0;
+    enemyBullets.length = 0;
+
+    spawnEnemies();
+    updateScoreUI();
+    updateLevelUI();
+    updateLivesUI();
+
+    overlay.classList.add('visible');
+    overlay.querySelector('h2').textContent = 'Grudvanje je spremno';
+    overlay.querySelector('p').textContent = 'Lik dole u plavoj jakni je tvoj igrač. Pomeri se levo/desno i pogodi protivnike grudvama.';
+    overlayScore.textContent = 'Score: 0 · Level 1';
+  }
+
+  function startGame(){
+    if(game.running) return;
+    game.running = true;
+    overlay.classList.remove('visible');
+    game.lastTime = performance.now();
+    loop(game.lastTime);
+  }
+
+  function gameOver(){
+    game.running = false;
+    overlay.classList.add('visible');
+    overlay.querySelector('h2').textContent = 'Kraj igre';
+    overlay.querySelector('p').textContent = 'Stranica nije pronađena, ali bar si odigrao jednu partiju.';
+    overlayScore.textContent = 'Score: ' + game.score + ' · Level ' + game.level;
+    if(animationId) cancelAnimationFrame(animationId);
+  }
+
+  function nextLevel(){
+    game.level++;
+    game.waveInTier++;
+
+    if(game.waveInTier > 3){
+      game.waveInTier = 1;
+      game.extraShooters++;
+      game.enemyFireInterval = game.baseFireInterval;
+    }else{
+      game.enemyFireInterval = Math.max(450, game.enemyFireInterval - 150);
+    }
+
+    game.enemyFireTimer = 0;
+    spawnEnemies();
+    game.score += 250;
+    updateScoreUI();
+    updateLevelUI();
+  }
+
+  function loop(ts){
+    if(!game.running) return;
+    const dt = (ts - game.lastTime)/1000;
+    game.lastTime = ts;
+    update(dt);
+    draw();
+    animationId = requestAnimationFrame(loop);
+  }
+
+  function update(dt){
+    // player movement
+    let dir = 0;
+    if(keys['ArrowLeft'] || keys['a'] || keys['A']) dir -= 1;
+    if(keys['ArrowRight'] || keys['d'] || keys['D']) dir += 1;
+    player.x += dir * player.speed * dt;
+    player.x = Math.max(40, Math.min(canvas.width-40, player.x));
+
+    if(game.playerFireCooldown > 0) game.playerFireCooldown -= dt*1000;
+
+    // enemies movement
+    enemies.forEach(e=>{
+      e.x += e.dir * e.speed * dt;
+      if(e.x < 40 || e.x > canvas.width-40) e.dir *= -1;
+    });
+
+    // enemy shooting – svaki protivnik baca 1–3 grudve
+    game.enemyFireTimer += dt * 1000;
+    if (game.enemyFireTimer >= game.enemyFireInterval && enemies.length > 0) {
+      game.enemyFireTimer = 0;
+
+      enemies.forEach(enemy => {
+        const burstCount = 1 + Math.floor(Math.random() * 3);
+        for (let i = 0; i < burstCount; i++) {
+          enemyBullets.push({
+            x: enemy.x,
+            y: enemy.y + enemy.height / 2,
+            radius: 7,
+            vy: 200 + game.level * 10 + i * 25,
+            delay: i * 120
+          });
+        }
+      });
+    }
+
+    // pomeranje metaka
+    playerBullets.forEach(b => {
+      b.y += b.vy * dt;
+    });
+
+    enemyBullets.forEach(b => {
+      if (b.delay > 0) {
+        b.delay -= dt * 1000;
+      } else {
+        b.y += b.vy * dt;
+      }
+    });
+
+    // uklanjanje player grudvi koje izađu gore
+    for (let i = playerBullets.length - 1; i >= 0; i--) {
+      if (playerBullets[i].y < -20) {
+        playerBullets.splice(i, 1);
+      }
+    }
+
+    // uklanjanje enemy grudvi koje odu skroz dole (tlo)
+    for (let i = enemyBullets.length - 1; i >= 0; i--) {
+      if (enemyBullets[i].y > canvas.height + 20) {
+        enemyBullets.splice(i, 1);
+      }
+    }
+
+    // player bullets vs enemies
+    for(let i=enemies.length-1;i>=0;i--){
+      const e = enemies[i];
+      for(let j=playerBullets.length-1;j>=0;j--){
+        const b = playerBullets[j];
+        if(
+          b.x > e.x - e.width/2 &&
+          b.x < e.x + e.width/2 &&
+          b.y > e.y - e.height/2 &&
+          b.y < e.y + e.height/2
+        ){
+          enemies.splice(i,1);
+          playerBullets.splice(j,1);
+          game.score += 100;
+          updateScoreUI();
+          break;
+        }
+      }
+    }
+
+    // enemy bullets vs player
+    for(let i=enemyBullets.length-1;i>=0;i--){
+      const b = enemyBullets[i];
+      if(
+        b.x > player.x - player.width/2 &&
+        b.x < player.x + player.width/2 &&
+        b.y > player.y - player.height/2 &&
+        b.y < player.y + player.height/2
+      ){
+        enemyBullets.splice(i,1);
+        game.lives--;
+        updateLivesUI();
+        if(game.lives <= 0){ gameOver(); return; }
+      }
+    }
+
+    // all enemies defeated -> next level
+    if(enemies.length === 0){
+      nextLevel();
+    }
+  }
+
+  function drawSnowBackground(){
+    // ground
+    ctx.fillStyle = 'rgba(255,255,255,.98)';
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height-80);
+    ctx.quadraticCurveTo(canvas.width/2, canvas.height-40, canvas.width, canvas.height-80);
+    ctx.lineTo(canvas.width, canvas.height);
+    ctx.lineTo(0, canvas.height);
+    ctx.closePath();
+    ctx.fill();
+
+    // snow dots
+    ctx.fillStyle = 'rgba(255,255,255,.9)';
+    for(let i=0;i<60;i++){
+      const x = (i*73)%canvas.width;
+      const y = (i*41)%(canvas.height-100);
+      ctx.fillRect(x,y,2,2);
+    }
+  }
+
+  function drawPlayer(){
+    ctx.save();
+    ctx.translate(player.x, player.y);
+
+    // body
+    ctx.fillStyle = '#1d4ed8';
+    ctx.beginPath();
+    ctx.ellipse(0,18,16,20,0,0,Math.PI*2);
+    ctx.fill();
+
+    // head
+    ctx.fillStyle = '#fee2e2';
+    ctx.beginPath();
+    ctx.arc(0,-2,12,0,Math.PI*2);
+    ctx.fill();
+
+    // eyes
+    ctx.fillStyle = '#020617';
+    ctx.beginPath();
+    ctx.arc(-4,-4,2,0,Math.PI*2);
+    ctx.arc(4,-4,2,0,Math.PI*2);
+    ctx.fill();
+
+    // scarf
+    ctx.fillStyle = '#f97316';
+    ctx.fillRect(-11,6,22,5);
+
+    // hat
+    ctx.fillStyle = '#0ea5e9';
+    ctx.fillRect(-10,-14,20,6);
+    ctx.fillStyle = '#22c55e';
+    ctx.fillRect(-6,-20,12,6);
+
+    ctx.restore();
+  }
+
+  function drawEnemy(e){
+    ctx.save();
+    ctx.translate(e.x,e.y);
+
+    ctx.fillStyle = '#e5f0ff';
+    ctx.beginPath();
+    ctx.arc(0,-8,10,0,Math.PI*2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(0,10,12,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle = '#020617';
+    ctx.beginPath();
+    ctx.arc(-3,-10,1.5,0,Math.PI*2);
+    ctx.arc(3,-10,1.5,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.strokeStyle = '#f97316';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(0,-8);
+    ctx.lineTo(7,-6);
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  function drawBullets(){
+    ctx.fillStyle = 'rgba(15,23,42,.9)';
+    playerBullets.forEach(b=>{
+      ctx.beginPath();
+      ctx.arc(b.x,b.y,b.radius,0,Math.PI*2);
+      ctx.fill();
+      ctx.strokeStyle = '#e5f0ff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    });
+
+    ctx.fillStyle = '#e5f0ff';
+    enemyBullets.forEach(b=>{
+      ctx.beginPath();
+      ctx.arc(b.x,b.y,b.radius,0,Math.PI*2);
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(15,23,42,.9)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    drawSnowBackground();
+
+    // gornja klupa
+    ctx.fillStyle = 'rgba(226,239,255,.95)';
+    ctx.beginPath();
+    ctx.roundRect(30,120,canvas.width-60,25,12);
+    ctx.fill();
+
+    enemies.forEach(drawEnemy);
+    drawPlayer();
+    drawBullets();
+  }
+
+  function handleKeyDown(e){
+    keys[e.key] = true;
+    if(e.code === 'Space'){
+      e.preventDefault();
+      shootPlayer();
+    }
+  }
+  function handleKeyUp(e){ keys[e.key] = false; }
+
+  function shootPlayer(){
+    if(!game.running) return;
+    if(game.playerFireCooldown > 0) return;
+    playerBullets.push({
+      x: player.x,
+      y: player.y - 28,
+      radius:7,
+      vy:-320
+    });
+    game.playerFireCooldown = 260;
+  }
+
+  btnStart.addEventListener('click', ()=>{
+    resetGame();
+    startGame();
+    canvas.focus();
+  });
+
+  btnRestart.addEventListener('click', ()=>{
+    resetGame();
+    startGame();
+  });
+
+  btnFocusGame.addEventListener('click', ()=>{
+    canvas.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(()=>canvas.focus(),400);
+  });
+
+  window.addEventListener('keydown', handleKeyDown);
+  window.addEventListener('keyup', handleKeyUp);
+
+  resetGame();
+  draw();
+</script>
+</body>
+</html>

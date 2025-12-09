@@ -1,3 +1,16 @@
+@property --orbit-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --orbit-angle-2 {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+
 :root {
   /* Glavna pozadina stranice – mekana, zelenkasta, SofTechRS-friendly */
   --page-bg: #e9fdf7; /* svetla mint/teal nijansa */
@@ -735,7 +748,6 @@ body {
   color: #1d4ed8;
   font-size: 0.8rem;
 }
-
 /* Timeline */
 .timeline {
   display: flex;
@@ -745,13 +757,82 @@ body {
 }
 
 .timeline-item {
+  position: relative;
   display: flex;
   gap: 1rem;
-  padding: 1rem 1.1rem;
-  border-radius: 1.1rem;
-  border: 1px solid #e5e7eb;
+  padding: 1.1rem 1.4rem;
+  border-radius: 1.4rem;
+
+  /* osnovni shadow + blagi neon glow */
+  box-shadow:
+    0 10px 28px rgba(148, 163, 184, 0.18),
+    0 0 18px rgba(56, 189, 248, 0.18);
+
+  /* zmijice oko bordera */
+  border: 2px solid transparent;
+  --orbit-angle: 0deg;
+  --orbit-angle-2: 0deg;
+
+  background:
+    /* unutrašnjost kartice */
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    /* prva zmijica – jača neon traka */
+    conic-gradient(
+      from var(--orbit-angle),
+      transparent 0deg 295deg,
+      rgba(34, 211, 238, 0.0) 296deg,
+      rgba(34, 211, 238, 0.85) 310deg,
+      rgba(34, 197, 94, 0.95) 335deg,
+      rgba(59, 130, 246, 0.9) 358deg,
+      transparent 360deg
+    ) border-box,
+    /* druga zmijica – bleđa, ide u suprotnom smeru */
+    conic-gradient(
+      from var(--orbit-angle-2),
+      transparent 0deg 285deg,
+      rgba(56, 189, 248, 0.0) 286deg,
+      rgba(56, 189, 248, 0.7) 305deg,
+      rgba(34, 197, 94, 0.7) 335deg,
+      transparent 360deg
+    ) border-box;
+
+  /* 2 animacije – jedna napred, druga nazad */
+  animation:
+    orbitSnake 14s linear infinite,
+    orbitSnakeReverse 26s linear infinite;
+
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.18s ease;
+}
+
+/* obične timeline kartice, bez zmijica */
+.timeline-item:not(.orbit) {
+  border-color: rgba(148, 163, 184, 0.35);
   background: #ffffff;
+  animation: none;
   box-shadow: 0 10px 28px rgba(148, 163, 184, 0.18);
+}
+
+/* pauza animacije + jači glow na hoveru */
+.timeline-item.orbit:hover {
+  animation-play-state: paused;
+  box-shadow:
+    0 18px 50px rgba(15, 23, 42, 0.22),
+    0 0 30px rgba(56, 189, 248, 0.8);
+  transform: translateY(-2px);
+}
+
+@keyframes orbitSnake {
+  to {
+    --orbit-angle: 360deg;
+  }
+}
+
+@keyframes orbitSnakeReverse {
+  to {
+    --orbit-angle-2: -360deg;
+  }
 }
 
 .timeline-step {
@@ -767,6 +848,12 @@ body {
   flex-shrink: 0;
 }
 
+/* Raspored teksta u kartici procesa */
+.timeline-body {
+  position: static;
+  padding-right: 6rem;  /* prostor za trajanje desno */
+}
+
 .timeline-body p {
   margin: 0;
   font-size: 0.94rem;
@@ -774,21 +861,28 @@ body {
 }
 
 .timeline-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 0.7rem;
-  margin-bottom: 0.3rem;
+  display: block;         /* više nije flex red */
+  margin-bottom: 0.35rem;
 }
 
 .timeline-header h4 {
   margin: 0;
   font-size: 1rem;
+  max-width: 75%;
 }
 
+/* trajanje – pravo desno dole, relativno na celu karticu */
 .timeline-duration {
+  position: absolute;
+  right: 1.6rem;
+  bottom: 1.15rem;
   font-size: 0.82rem;
   color: var(--text-muted);
+}
+
+/* veći odmak između procesa i "Ključni zaključci" */
+.process-orbit {
+  margin-bottom: 3rem;
 }
 
 /* Takeaways */
@@ -803,6 +897,7 @@ body {
   margin: 0 0 1rem;
 }
 
+
 /* =============================== */
 /*   ULEPŠANE KARTICE – PREMIUM    */
 /* =============================== */
@@ -811,28 +906,28 @@ body {
 .card-metric,
 .card-border-blue,
 .card-border-purple,
-.card-box,
-.timeline-item {
-  background: #ffffffcc; /* skoro belo sa malo providnosti */
-  backdrop-filter: blur(6px);
+.card-box {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
   border-radius: 1.1rem;
   padding: 1.4rem 1.5rem;
-  border: 1px solid rgba(148,163,184,0.22);
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.10);
   transition:
-    transform .18s ease,
-    box-shadow .18s ease,
-    background-color .18s ease;
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease,
+    border-color 0.18s ease;
 }
 
-/* Jače kartice (border-blue i purple) */
+/* Istaknutije kartice sa jačim okvirom */
 .card-border-blue,
 .card-border-purple {
   border-width: 2px;
-  background: #ffffffcc;
+  background: rgba(255, 255, 255, 0.96);
 }
 
-/* Hover efekat */
+/* Hover efekat – lagano podizanje */
 .card-soft:hover,
 .card-metric:hover,
 .card-border-blue:hover,
@@ -840,12 +935,12 @@ body {
 .card-box:hover,
 .timeline-item:hover {
   transform: translateY(-6px);
-  box-shadow: 0 22px 42px rgba(15,23,42,0.14);
-  background-color: #ffffffee;
-  border-color: rgba(148,163,184,0.38);
+  box-shadow: 0 22px 46px rgba(15, 23, 42, 0.18);
+  background-color: #ffffff;
+  border-color: rgba(148, 163, 184, 0.40);
 }
 
-/* Ikonice za kartice */
+/* Ikonice u karticama – malo “chip” feeling */
 .card-icon,
 .card-badge-icon {
   background: var(--primary-soft);
@@ -853,7 +948,7 @@ body {
   border-radius: 0.9rem;
 }
 
-/* Jača boja ikona za istaknute sekcije */
+/* Stat / badge varijante – sekundarna nijansa */
 .stat-card .blog-card-icon,
 .card-badge-icon.green,
 .card-badge-icon.blue,
@@ -861,7 +956,6 @@ body {
   background: var(--secondary-soft);
   color: var(--secondary);
 }
-
 
 
 /* CTA */
@@ -1156,3 +1250,4 @@ body {
     transition: none;
   }
 }
+

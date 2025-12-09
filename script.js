@@ -564,24 +564,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// ---------- Back to Top dugme ----------
-document.addEventListener('DOMContentLoaded', () => {
-  const backBtn = document.getElementById('backToTop');
 
-  function toggleBackToTop() {
-    if (window.scrollY > 300) {
-      backBtn.classList.add('visible');
-    } else {
-      backBtn.classList.remove('visible');
-    }
-  }
-
-  window.addEventListener('scroll', toggleBackToTop);
-
-  backBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-});
 
 
 // ---------- Responsive navbar (hamburger) ----------
@@ -615,22 +598,30 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-const backToTopBtn = document.getElementById('backToTop');
-if (backToTopBtn) {
-  window.addEventListener('scroll', () => {
-    // ...
-  });
-  backToTopBtn.addEventListener('click', () => {
+// ---------- Back to Top dugme (unified) ----------
+document.addEventListener('DOMContentLoaded', () => {
+  // podržavamo oba ID-ja: backToTop (glavni sajt) i scrollTopBtn (blog)
+  const backBtn =
+    document.getElementById('backToTop') ||
+    document.getElementById('scrollTopBtn');
+
+  // ako stranica nema nijedno dugme – samo izađi i nema greške
+  if (!backBtn) return;
+
+  function toggleBackToTop() {
+    if (window.scrollY > 300) {
+      backBtn.classList.add('visible');
+    } else {
+      backBtn.classList.remove('visible');
+    }
+  }
+
+  // inicijalno stanje
+  toggleBackToTop();
+
+  window.addEventListener('scroll', toggleBackToTop);
+
+  backBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-}
-
-const scrollBar = document.getElementById('scrollProgressBar');
-if (scrollBar) {
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    scrollBar.style.width = progress + '%';
-  });
-}
+});
